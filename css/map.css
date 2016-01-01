@@ -148,3 +148,9 @@ background-color: transparent!important;
 	color: rgba(29, 29, 29, 0.6);
 	font-size: 150%;
 }
+#bottom{
+position:fixed;
+bottom:5px;
+left:10px;
+font-weight:bold;
+}

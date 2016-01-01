@@ -68,14 +68,7 @@ session_start();
           </table>
         </div>
       </div>
-      <div class="footer">
-      <nav class="navbar navbar-default foot navbar-fixed-bottom">
-        <ul class="nav-navbar nav"> 
-          <li class="copy hidden-xs">Institute Webops</li>
-          <li class="hidden-md hidden-lg hidden-sm col-xs-offset-3 bot">IITM Institute Map|<font size="2">Institute Webops</font></li>
-        </ul>
-      </nav>
-    </div>
-  </body>
+     <p id="bottom">Institute Webops</p>
+		</body>
 </html>
 
