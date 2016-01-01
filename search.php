@@ -3,15 +3,13 @@ session_start();
 ?>
 <?php
 require 'config/config.php';
-$conn = mysqli_connect($host,$user,$pwd,$db);
-$sql= "SELECT * FROM instimaps";
-$result= mysqli_query($conn,$sql);
+$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pwd);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$stmt = $conn->prepare("SELECT * FROM instimaps");
+$stmt->execute();
 $places= array();
-$j=0;
-while($row= mysqli_fetch_assoc($result))
-{
-	$places[$j] = $row['locname'];
-	$j++;
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  array_push($places,$row["locname"]);
 }
 //get the q parameter from URL
 $q=$_GET["q"];

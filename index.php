@@ -7,40 +7,21 @@ session_start();
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>Institute map</title>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400;300' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="tex/css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link href="css/map.css" rel="stylesheet" type="text/css">
     <link href="images/logo.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://nekman.github.io/keynavigator/keynavigator.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/map_api.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script src="js/index.js" type="text/javascript"></script>
-    <script src="jquery/arrow.js" type="text/javascript"></script>
-   <!-- <script type="text/javascript"></script>-->
-  </head>
+	</head>
   <body>
- <!--   <nav class="nav1 container-fluid navbar navbar-default">
-      <div class="container contain1">
-      <ul class="nav navbar-nav head col-md-3 col-sm-4 col-xs-3 col-lg-3">
-        <li class="font font1">Institute
-        <font class="font2">Map</font></li>
-      </ul>
-    </nav>
-  </div>
-    <nav class="nav2 container-fluid navbar navbar-primary">
-       <div class="container contain2">
-      <ul class="nav navbar-nav">
-        <li><a href="index.php" class="gen">Home</a></li>
-      </ul>
-    </div>
-    </nav>-->
     <div class="wrapper">
       <div class="col-md-4 col-sm-2 hidden-xs col-lg-4 maphead">
       <p>IITM Institute Map</p>
     </div>
       <div class="searchform col-md-10 col-sm-10 col-xs-10 col-lg-10">
-          <form name="form_name" id="fname" method="post" action="">
+          <form name="form_name" id="fname" method="get" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8");?>>
             <input type="text" list="sugg" name="search2" id="search1" class="box col-md-6 col-sm-6 col-xs-6 col-lg-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4" onkeyup="showResult(this.value); road_1();" autocomplete="off">
             <button class="btn btn-primary"><i class="fa fa-search"></i></button>
             <br><div id="livesearch" class=" col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4 col-md-6 col-sm-6 col-xs-6 col-lg-6" ></div>
@@ -58,19 +39,21 @@ session_start();
               <th>depname</th>
             </tr>
             <?php
-                if (isset($_POST["search2"]) && !empty($_POST["search2"]))
+                if (isset($_GET["search2"]) && !empty($_GET["search2"]))
                 {
-
-                  $data= $_POST["search2"];
-                  require 'config/config.php';
-                  $conn=mysqli_connect ("$host","$user","$pwd","$db");
-                  if(!$conn)
-                  {
-                    die('Not connected : ' . mysqli_error());
-                  }
-                  $sql = "SELECT * FROM instimaps WHERE locname='$data'";
-                  $result = mysqli_query($conn,$sql);
-                  while ($row = mysqli_fetch_assoc($result))
+									require 'config/config.php';
+                  $data= $_GET["search2"];
+									try{
+      							$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pwd);
+      							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     	 						}
+									catch(PDOException $e){
+										echo "Connection failed: " . $e->getMessage();
+									}
+    							$stmt = $conn->prepare("SELECT * FROM instimaps WHERE locname=:data");
+    							$stmt->bindParam(':data', $data);
+    							$stmt->execute();
+    							while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                   {
                     echo "<tr>";
                     echo "<td>". $row['lat'] ."</td>";
