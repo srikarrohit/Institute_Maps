@@ -65,20 +65,44 @@ function initialize()
       bindInfoWindow(marker, map, infoWindow, html);
       }
     }
-    function showResult(str) {
-  if(document.getElementById("livesearch").style.visibility == "none"){
-    alert(1);
-    document.getElementById("livesearch").style.visibility == "visible";
+var count=0;
+    function showResult(str,e) {
+		var value=document.getElementById('search1').value;
+    if(value=="")
+    	count=0;
+    if(e.keyCode == 40)
+    {
+		console.log(count);
+    var max=document.getElementById('counter').innerHTML;
+    console.log(max);
+//     console.log(document.getElementById('txtHint').scrollTop);
+    if(count!=0)
+    document.getElementById(count).style.cssText = 'background-color:none;';
+    if(count>6)
+    document.getElementById('livesearch').scrollTop+=24;
+    if(count!=max)
+    count++;
+    document.getElementById('search1').value=document.getElementById(count).innerHTML;
+    document.getElementById(count).style.cssText = 'background-color:#ecf0f1;';
+    console.log(count);
     }
-  
-  if (str.length<3) { 
+    else if(e.keyCode == 38){
+    document.getElementById(count).style.cssText = 'background-color:none;';
+    var scroll = document.getElementById('livesearch').scrollTop;
+    count--;
+    if(scroll>=24 && count>1)
+    document.getElementById('livesearch').scrollTop-=24;
+    document.getElementById('search1').value=document.getElementById(count).innerHTML;
+    if(count!=0)
+    document.getElementById(count).style.cssText = 'background-color:#ecf0f1;';
+    }
+	else{
+  if (str.length==0) { 
     document.getElementById("livesearch").innerHTML="";
     document.getElementById("livesearch").style.border="0px";
-  }
-   if (str.length<3) {
     document.getElementById("livesearch").style.height = "0px";
   }
-  if (str.length>=3) {
+  if (str.length>=1) {
     document.getElementById("livesearch").style.height = "auto";
   }
   if (window.XMLHttpRequest) {
@@ -99,6 +123,7 @@ function initialize()
   }
   xmlhttp.open("GET","search.php?q="+str,true);
   xmlhttp.send();
+	}
 }
 
     google.maps.event.addDomListener(window, 'load', initialize);
