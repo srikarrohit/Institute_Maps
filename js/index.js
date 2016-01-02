@@ -6,6 +6,7 @@
   	}
   });
 }); */
+var i=0;
 function initialize()
     {
       var myCenter=new google.maps.LatLng(12.9925,80.231072);
@@ -228,6 +229,7 @@ function submit(){
   locdata();
 }
 
+
 function locdata() {
   var xhttp = new XMLHttpRequest();
 	var input= document.getElementById("search1").value;
@@ -235,10 +237,23 @@ function locdata() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       document.getElementById("printing").innerHTML = xhttp.responseText;
 			initialize();
+			iconchange();
     }
   };
   xhttp.open("GET", "api.php?search2="+input,true);
   xhttp.send();
 	return false;
+}
+
+function iconchange(){
+	var value=document.getElementById("search1").value
+	if(i==0 && value!=0){document.getElementById("btn").className="fa fa-times";
+		i=1;
+	}
+	else{
+		document.getElementById("btn").className="fa fa-search";
+		document.getElementById("search1").value="";
+		i=0;
+	}
 }
 

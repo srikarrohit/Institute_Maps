@@ -23,7 +23,7 @@ session_start();
       <div class="searchform col-md-10 col-sm-10 col-xs-10 col-lg-10">
      	<form name="form_name" id="fname" onsubmit="return locdata();">
             <input type="text" list="sugg" name="search2" id="search1" class="box col-md-6 col-sm-6 col-xs-6 col-lg-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4" onkeyup="showResult(this.value,event); road_1();" autocomplete="off">
-            <button class="btn btn-primary" onclick="locdata();"><i class="fa fa-search"></i></button>
+            <button class="btn btn-primary" onclick="locdata();"><i id="btn" class='fa fa-search'></i></button>
             <br><div id="livesearch" class=" col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4 col-md-6 col-sm-6 col-xs-6 col-lg-6" ></div>
       </div>
 			</form>
