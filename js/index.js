@@ -45,6 +45,22 @@ var markers = [
                 "description": ''
             }
     ];
+	var image = {
+    url: 'images/bus.png',
+    // This marker is 30 pixels wide by 30 pixels high.
+    size: new google.maps.Size(30, 30),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (15, 15).
+    anchor: new google.maps.Point(15, 15)
+  };
+  // Shapes define the clickable region of the icon. The type defines an HTML
+  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+  // The final coordinate closes the poly by connecting to the first coordinate.
+  var shape = {
+    coords: [2, 2, 2, 28, 28, 28, 28, 2],
+    type: 'poly'
+  };
 
 var infoWindow = new google.maps.InfoWindow();
         var lat_lng = new Array();
@@ -56,6 +72,8 @@ var infoWindow = new google.maps.InfoWindow();
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
+				icon: image,
+				shape: shape,
                 title: data.title
             });
             latlngbounds.extend(marker.position);
