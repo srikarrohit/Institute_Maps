@@ -21,12 +21,12 @@ session_start();
       <p>IITM Institute Map</p>
     </div>
       <div class="searchform col-md-10 col-sm-10 col-xs-10 col-lg-10">
-          <form name="form_name" id="fname" method="get" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8");?>>
+     	<form name="form_name" id="fname" onsubmit="return locdata();">
             <input type="text" list="sugg" name="search2" id="search1" class="box col-md-6 col-sm-6 col-xs-6 col-lg-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4" onkeyup="showResult(this.value,event); road_1();" autocomplete="off">
-            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+            <button class="btn btn-primary" onclick="locdata();"><i class="fa fa-search"></i></button>
             <br><div id="livesearch" class=" col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4 col-md-6 col-sm-6 col-xs-6 col-lg-6" ></div>
-          </form>
       </div>
+			</form>
       <div id="googleMap" class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="width: 100%; height: 100%; " class="col-md-offset-4">
       </div>
         <div style="display:none;">
@@ -38,34 +38,8 @@ session_start();
               <th>locdescrip</th>
               <th>depname</th>
             </tr>
-            <?php
-                if (isset($_GET["search2"]) && !empty($_GET["search2"]))
-                {
-									require 'config/config.php';
-                  $data= $_GET["search2"];
-									try{
-      							$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pwd);
-      							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     	 						}
-									catch(PDOException $e){
-										echo "Connection failed: " . $e->getMessage();
-									}
-    							$stmt = $conn->prepare("SELECT * FROM instimaps WHERE locname=:data");
-    							$stmt->bindParam(':data', $data);
-    							$stmt->execute();
-    							while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-                  {
-                    echo "<tr>";
-                    echo "<td>". $row['lat'] ."</td>";
-                    echo "<td>". $row['lng'] ."</td>";
-                    echo "<td>". $row['locname'] ."</td>";
-                    echo "<td>". $row['locdescrip'] ."</td>";
-                    echo "<td>". $row['depname'] ."</td>";
-                    echo "</tr>";
-                  }
-                }
-            ?>
-          </table>
+						<tr id='printing'></tr> 
+        	</table>
         </div>
       </div>
      <p id="bottom">Institute Webops</p>

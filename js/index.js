@@ -225,5 +225,20 @@ function road_1(){
   document.getElementById('livesearch').style.display="block";
 }
 function submit(){
-  document.getElementById('fname').submit();
+  locdata();
 }
+
+function locdata() {
+  var xhttp = new XMLHttpRequest();
+	var input= document.getElementById("search1").value;
+  xhttp.onreadystatechange=function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("printing").innerHTML = xhttp.responseText;
+			initialize();
+    }
+  };
+  xhttp.open("GET", "api.php?search2="+input,true);
+  xhttp.send();
+	return false;
+}
+
