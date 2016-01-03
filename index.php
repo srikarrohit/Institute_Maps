@@ -56,4 +56,3 @@ session_start();
      <p id="bottom">Institute Webops</p>
 		</body>
 </html>
-

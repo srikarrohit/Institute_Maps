@@ -18,7 +18,7 @@ function initialize()
         center:myCenter,
           maxZoom:18,
           minZoom:10,
-          zoom:16,
+          zoom:10,
           mapTypeId:google.maps.MapTypeId.ROADMAP
       };
     var strictBounds = new google.maps.LatLngBounds(
@@ -235,7 +235,7 @@ var count=0;
           google.maps.event.addListener(marker, 'click', function() {
             infoWindow.setContent(html);
             infoWindow.open(map, marker);
-            map.setZoom(18);
+            map.setZoom(16);
             map.setCenter(marker.getPosition());
           });
         }
