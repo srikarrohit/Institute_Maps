@@ -7,6 +7,10 @@
   });
 }); */
 var i=0;
+var value;
+var map;
+var markers = [];
+var markers1 = [];
 function initialize()
     {
       var myCenter=new google.maps.LatLng(12.9925,80.231072);
@@ -21,7 +25,7 @@ function initialize()
       new google.maps.LatLng(12.97,80.20),
       new google.maps.LatLng(13.01,80.25)
      );
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
 var markers = [
             {
@@ -264,7 +268,7 @@ function locdata() {
 }
 
 function iconchange(){
-	var value=document.getElementById("search1").value
+	value=document.getElementById("search1").value
 	if(i==0 && value!=0){document.getElementById("btn").className="fa fa-times";
 		i=1;
 	}
@@ -273,5 +277,122 @@ function iconchange(){
 		document.getElementById("search1").value="";
 		i=0;
 	}
+}
+function Func(){
+	document.getElementById("search1").value=value;
+	iconchange();
+}
+
+//functions for checkboxes
+function onchangecheckbox(checkbox){
+	
+	if (checkbox.checked) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange=function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			marker(xhttp.responseText);
+			}
+		};
+	xhttp.open("GET", "addmarker.php?q=places",true);
+	xhttp.send();
+    }
+	else {
+		deleteMarkers();
+    }
+}
+
+function marker(response){
+	var arr = JSON.parse(response);
+	var n;
+	var image1 = {
+    url: 'images/food.png',
+    size: new google.maps.Size(30, 30),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(15, 15)
+    };
+    var shape1 = {
+    coords: [2, 2, 2, 28, 28, 28, 28, 2],
+    type: 'poly'
+    };
+	for(n = 0; n < arr.length; n++){
+		var loc = new google.maps.LatLng(arr[n].lat,arr[n].lng);
+		var marker = new google.maps.Marker({
+		position: loc,
+		map: map,
+		icon:image1,
+		shape:shape1
+	  });
+	  markers.push(marker);
+	}
+}
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setMapOnAll(null);
+}
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+
+function onchangecheckbox1(checkbox){
+	
+	if (checkbox.checked) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange=function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			marker1(xhttp.responseText);
+			}
+		};
+	xhttp.open("GET", "addmarker.php?q=hostels",true);
+	xhttp.send();
+    }
+	else {
+        deleteMarkers1();
+    }
+}
+function marker1(response){
+	var arr = JSON.parse(response);
+	var n;
+	var image1 = {
+    url: 'images/hostel.png',
+    size: new google.maps.Size(30, 30),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(15, 15)
+    };
+    var shape1 = {
+    coords: [2, 2, 2, 28, 28, 28, 28, 2],
+    type: 'poly'
+    };
+	for(n = 0; n < arr.length; n++){
+		var loc = new google.maps.LatLng(arr[n].lat,arr[n].lng);
+		var marker = new google.maps.Marker({
+		position: loc,
+		map: map,
+		icon:image1,
+		shape:shape1
+	  });
+	  markers1.push(marker);
+	}
+}
+
+function setMapOnAll1(map) {
+  for (var i = 0; i < markers1.length; i++) {
+    markers1[i].setMap(map);
+  }
+}
+
+function clearMarkers1() {
+  setMapOnAll1(null);
+}
+function deleteMarkers1() {
+  clearMarkers1();
+  markers1 = [];
 }
 
