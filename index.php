@@ -25,8 +25,19 @@ session_start();
             <input type="text" list="sugg" name="search2" id="search1" class="box col-md-6 col-sm-6 col-xs-6 col-lg-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4" onkeyup="showResult(this.value,event); road_1();" autocomplete="off">
             <button class="btn btn-primary" onclick="locdata();"><i id="btn" class='fa fa-search'></i></button>
             <br><div id="livesearch" class=" col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4 col-md-6 col-sm-6 col-xs-6 col-lg-6" ></div>
-      </div>
-			</form>
+        </form>
+	  </div>
+	  
+	  
+	  <div id="checkboxes" style="z-index:10000000;left:10px;top:45px;position:fixed;background:white;font-size: 20px;">
+		<ul>
+			<li><input type="checkbox" id="places" onclick="onchangecheckbox(this)">Places</li>
+			<li><input type="checkbox" id="places" onclick="onchangecheckbox1(this)">Hostels</li>
+		</ul>
+	  </div>
+	  
+	  
+	  
       <div id="googleMap" class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="width: 100%; height: 100%; " class="col-md-offset-4">
       </div>
         <div style="display:none;">
