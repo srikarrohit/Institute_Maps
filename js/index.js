@@ -11,6 +11,10 @@ var value;
 var map;
 var markers = [];
 var markers1 = [];
+function showMarkers() {
+  setMapOnAll(map);
+  setMapOnAll1(map);
+}
 function initialize()
     {
       var myCenter=new google.maps.LatLng(12.9925,80.231072);
@@ -168,6 +172,7 @@ var infoWindow = new google.maps.InfoWindow();
         marker.setMap(map);
       bindInfoWindow(marker, map, infoWindow, html);
       }
+	  showMarkers();
     }
 var count=0;
     function showResult(str,e) {
@@ -250,6 +255,7 @@ function road_1(){
 function submit(){
   locdata();
 }
+
 
 
 function locdata() {
