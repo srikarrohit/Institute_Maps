@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost","root","maruhgar","instimaps");
+$conn = new mysqli("localhost","root","ragasree","maps1");
 $q=$_GET["q"];
 $result = $conn->query("SELECT * FROM instimaps JOIN category ON category.cat_id=instimaps.cat_id WHERE category.category='$q'");
 
