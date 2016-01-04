@@ -11,6 +11,8 @@ var value;
 var map;
 var markers = [];
 var markers1 = [];
+var markers2 = [];
+var infowindow1=[];
 function showMarkers() {
   setMapOnAll(map);
   setMapOnAll1(map);
@@ -36,21 +38,21 @@ var markers = [
                 "title": 'mainGate',
                 "lat": '13.005990',
                 "lng": '80.242484',
-                "description": ''
+                "description": 'Main Gate Bus Stop'
             }
         ,
             {
                 "title": 'velacheryGate',
                 "lat": '12.988465',
                 "lng": '80.223307',
-                "description": ''
+                "description": 'Velachery Bus stop'
             }
         ,
             {
                 "title": 'jamunaStop',
                 "lat": '12.986637',
                 "lng": '80.238757',
-                "description": ''
+                "description": 'Jamuna Bus Stop'
             }
     ];
 	var image = {
@@ -82,7 +84,7 @@ var infoWindow = new google.maps.InfoWindow();
                 map: map,
 				icon: image,
 				shape: shape,
-                title: data.title
+                title: data.title,
             });
             latlngbounds.extend(marker.position);
             (function (marker, data) {
@@ -168,6 +170,7 @@ var infoWindow = new google.maps.InfoWindow();
           }); 
         var marker=new google.maps.Marker({
           position:marker_0,
+		  animation: google.maps.Animation.DROP
           });
         marker.setMap(map);
       bindInfoWindow(marker, map, infoWindow, html);
@@ -321,14 +324,23 @@ function marker(response){
     type: 'poly'
     };
 	for(n = 0; n < arr.length; n++){
-		var loc = new google.maps.LatLng(arr[n].lat,arr[n].lng);
+		var data = arr[n]
+		var infoWindow = new google.maps.InfoWindow();
+		var loc = new google.maps.LatLng(data.lat,data.lng);
 		var marker = new google.maps.Marker({
 		position: loc,
 		map: map,
 		icon:image1,
-		shape:shape1
+		shape:shape1,
+		title:data.room
 	  });
 	  markers.push(marker);
+	  (function (marker, data) {
+                google.maps.event.addListener(marker, "click", function (e) {
+                    infoWindow.setContent(data.room);
+                    infoWindow.open(map, marker);
+                });
+            })(marker, data);
 	}
 }
 
@@ -377,15 +389,24 @@ function marker1(response){
     type: 'poly'
     };
 	for(n = 0; n < arr.length; n++){
-		var loc = new google.maps.LatLng(arr[n].lat,arr[n].lng);
+		var data=arr[n]
+		var infoWindow = new google.maps.InfoWindow();
+		var loc = new google.maps.LatLng(data.lat,data.lng);
 		var marker = new google.maps.Marker({
 		position: loc,
 		map: map,
 		icon:image1,
-		shape:shape1
-	  });
-	  markers1.push(marker);
-	}
+		shape:shape1,
+		title:data.room
+		});
+		markers1.push(marker);
+		(function (marker, data) {
+                google.maps.event.addListener(marker, "click", function (e) {
+                    infoWindow.setContent(data.room);
+                    infoWindow.open(map, marker);
+                });
+            })(marker, data);
+    }
 }
 
 function setMapOnAll1(map) {
@@ -402,3 +423,66 @@ function deleteMarkers1() {
   markers1 = [];
 }
 
+function onchangecheckbox2(checkbox){
+	
+	if (checkbox.checked) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange=function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			marker2(xhttp.responseText);
+			}
+		};
+	xhttp.open("GET", "addmarker.php?q=impplaces",true);
+	xhttp.send();
+    }
+	else {
+        deleteMarkers2();
+    }
+}
+function marker2(response){
+	var arr = JSON.parse(response);
+	var n;
+	var image2 = {
+    url: 'images/marker.png',
+    size: new google.maps.Size(30, 30),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(15, 15)
+    };
+    var shape2 = {
+    coords: [2, 2, 2, 28, 28, 28, 28, 2],
+    type: 'poly'
+    };
+	for(n = 0; n < arr.length; n++){
+		var data=arr[n]
+		var infoWindow = new google.maps.InfoWindow();
+		var loc = new google.maps.LatLng(data.lat,data.lng);
+		var marker = new google.maps.Marker({
+		position: loc,
+		map: map,
+		icon:image2,
+		shape:shape2,
+		title:data.room
+		});
+		markers2.push(marker);
+		(function (marker, data) {
+                google.maps.event.addListener(marker, "click", function (e) {
+                    infoWindow.setContent(data.room);
+                    infoWindow.open(map, marker);
+                });
+            })(marker, data);
+    }
+}
+
+function setMapOnAll2(map) {
+  for (var i = 0; i < markers2.length; i++) {
+    markers2[i].setMap(map);
+  }
+}
+
+function clearMarkers2() {
+  setMapOnAll2(null);
+}
+function deleteMarkers2() {
+  clearMarkers2();
+  markers2 = [];
+}

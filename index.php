@@ -31,8 +31,9 @@ session_start();
 	  
 	  <div id="checkboxes" style="z-index:10000000;left:10px;top:45px;position:fixed;background:white;font-size: 20px;">
 		<ul>
-			<li><input type="checkbox" id="places" onclick="onchangecheckbox(this)">Places</li>
-			<li><input type="checkbox" id="places" onclick="onchangecheckbox1(this)">Hostels</li>
+			<li><input type="checkbox" id="places" onclick="onchangecheckbox(this)">Places To Eat</li>
+			<li><input type="checkbox" id="hostels" onclick="onchangecheckbox1(this)">Hostels</li>
+			<li><input type="checkbox" id="impplaces" onclick="onchangecheckbox2(this)">Important places</li>
 		</ul>
 	  </div>
 	  
