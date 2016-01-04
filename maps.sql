@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 03, 2016 at 11:34 PM
+-- Generation Time: Jan 04, 2016 at 04:59 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `category` (
 INSERT INTO `category` (`cat_id`, `category`) VALUES
 (1, 'Department'),
 (2, 'places'),
-(3, 'hostels');
+(3, 'hostels'),
+(4, 'impplaces');
 
 -- --------------------------------------------------------
 
@@ -363,10 +364,10 @@ INSERT INTO `instimaps` (`id`, `locname`, `depname`, `locdescrip`, `lat`, `lng`,
 (298, 'Polishing Room (MSB 205)', 'Metallurgical and Materials En', '', 12.9909910, 80.2286800, 1),
 (299, 'Materials Processing Section (MPS) or Metallurgy Workshop', 'Metallurgical and Materials En', 'Next to CRC Bus stop - towards Velachery gate', 12.9909910, 80.2286800, 1),
 (300, 'Research Scholars Room - MPS 207', 'Metallurgical and Materials En', 'MPS 207', 12.9911720, 80.2297490, 1),
-(301, 'Indo German Centre for Sustainability', 'Multi-disciplinary', 'First floor, MSRC Block', 0.0000000, 0.0000000, 1),
+(301, 'Indo German Centre for Sustainability', 'Multi-disciplinary', 'First floor, MSRC Block', 12.9893950, 80.2312800, 1),
 (302, 'Brahmaputra Hostel', '', '', 12.9841060, 80.2346960, 3),
-(303, 'Sports Complex', '', '', 12.9868520, 80.2330690, 2),
-(304, 'New Hostels', '', '', 0.0000000, 0.0000000, 3),
+(303, 'Sports Complex', '', '', 12.9868520, 80.2330690, 4),
+(304, 'New Hostels', '', '', 12.9859660, 80.2327320, 3),
 (305, 'The Uncertainty Lab', 'Applied Mechanics', 'MSB 227', 12.9908300, 80.2309090, 1),
 (306, 'Gurunath Juice Center', '', '', 12.9866670, 80.2354030, 2),
 (307, 'Leo Fortune', '', '', 12.9866670, 80.2354030, 2),
@@ -393,7 +394,19 @@ INSERT INTO `instimaps` (`id`, `locname`, `depname`, `locdescrip`, `lat`, `lng`,
 (328, 'Sindhu Hostel', '', '', 12.9880740, 80.2375980, 3),
 (329, 'Sabarmati Hostel', '', '', 12.9894980, 80.2343060, 3),
 (330, 'Sharavati Hostel', '', '', 12.9901920, 80.2342760, 3),
-(331, 'Narmada Hostel', '', '', 12.9858890, 80.2353010, 3);
+(331, 'Narmada Hostel', '', '', 12.9858890, 80.2353010, 3),
+(332, 'Taramani Guest House', '', '', 12.9867420, 12.9867420, 4),
+(333, 'Muslim Prayer Hall', '', '', 12.9871470, 80.2353160, 4),
+(334, 'Hostel Electrical Maintenance', '', '', 12.9871670, 80.2353920, 4),
+(335, 'CCW OFFICE AND ICICI ATM', '', '', 12.9871870, 80.2375060, 4),
+(336, 'IIT Madras Alumni Association', '', '', 12.9870660, 80.2375260, 4),
+(337, 'Students Activity Centre', '', '', 12.9893890, 80.2376310, 4),
+(338, 'IIT Stadium', '', '', 12.9919050, 80.2366550, 4),
+(339, 'Central Library', '', '', 12.9906970, 80.2337690, 4),
+(340, 'Administration Block', '', '', 12.9908010, 80.2329320, 4),
+(341, 'IC&SR Building', '', '', 12.9916640, 80.2321630, 4),
+(342, 'Open Air Theater', '', '', 12.9889970, 80.2335450, 4),
+(343, 'CLT', '', '', 12.9896170, 80.2321040, 4);
 
 --
 -- Constraints for dumped tables
