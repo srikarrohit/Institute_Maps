@@ -84,7 +84,7 @@ var infoWindow = new google.maps.InfoWindow();
                 map: map,
 				icon: image,
 				shape: shape,
-                title: data.title,
+                title: data.title
             });
             latlngbounds.extend(marker.position);
             (function (marker, data) {

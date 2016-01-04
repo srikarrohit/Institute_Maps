@@ -11,7 +11,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link href="css/map.css" rel="stylesheet" type="text/css">
     <link href="images/logo.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
-    <script type="text/javascript" src="js/map_api.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnVxhEMDL8bkG8AAgXGTw_VI03XX-PEbg"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script src="js/index.js" type="text/javascript"></script>
 	</head>
