@@ -16,6 +16,7 @@ var infowindow1=[];
 function showMarkers() {
   setMapOnAll(map);
   setMapOnAll1(map);
+  setMapOnAll2(map);
 }
 function initialize()
     {
