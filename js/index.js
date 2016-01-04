@@ -171,11 +171,12 @@ var infoWindow = new google.maps.InfoWindow();
           }); 
         var marker=new google.maps.Marker({
           position:marker_0,
-		  animation: google.maps.Animation.DROP
+		  animation: google.maps.Animation.BOUNCE
           });
         marker.setMap(map);
       bindInfoWindow(marker, map, infoWindow, html);
       }
+	  window.setTimeout(function(){ marker.setAnimation(null);}, 1500);
 	  showMarkers();
     }
 var count=0;
