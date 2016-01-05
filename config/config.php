@@ -1,6 +1,6 @@
 <?php
 $host="localhost";
 $user="root";
-$pwd="";
+$pwd="ragasree";
 $db="maps1";
 ?>
