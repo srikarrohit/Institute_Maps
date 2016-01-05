@@ -11,6 +11,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link href="css/map.css" rel="stylesheet" type="text/css">
     <link href="images/logo.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?AIzaSyANpptUZHCGiIj3xSKm5ugkJqRohNIJD6w"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script src="js/index.js" type="text/javascript"></script>
@@ -29,11 +30,11 @@ session_start();
 	  </div>
 	  
 	  
-	  <div id="checkboxes" style="z-index:10000000;left:10px;top:45px;position:fixed;background:white;font-size: 20px;">
+	  <div id="checkboxes" class="col-xs-hidden">
 		<ul>
-			<li><input type="checkbox" id="places" onclick="onchangecheckbox(this)">Places To Eat</li>
-			<li><input type="checkbox" id="hostels" onclick="onchangecheckbox1(this)">Hostels</li>
-			<li><input type="checkbox" id="impplaces" onclick="onchangecheckbox2(this)">Important places</li>
+			<li><input type="checkbox" id="places" onclick="onchangecheckbox(this)"> Places To Eat</li>
+			<li><input type="checkbox" id="hostels" onclick="onchangecheckbox1(this)"> Hostels</li>
+			<li><input type="checkbox" id="impplaces" onclick="onchangecheckbox2(this)"> Important places</li>
 		</ul>
 	  </div>
 	  
