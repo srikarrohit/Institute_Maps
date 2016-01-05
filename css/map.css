@@ -131,6 +131,13 @@ background-color: transparent!important;
 	.font{
 		font-size: 150%;
 	}
+	#checkboxes{
+		font-size:60px;
+	}
+	.searchform{
+		width:100%;
+		top:0px;
+	}
 }
 .bot{
 	margin-bottom: 15px;

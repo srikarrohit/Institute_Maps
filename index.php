@@ -17,10 +17,10 @@ session_start();
 	</head>
   <body>
     <div class="wrapper">
-      <div class="col-md-4 col-sm-2 hidden-xs col-lg-4 maphead">
+      <div class="col-md-10 col-sm-8 hidden-xs col-lg-4 col-md-offset-4 col-lg-offset-4 col-sm-offset-4 maphead">
       <p>IITM Institute Map</p>
     </div>
-      <div class="searchform col-md-10 col-sm-10 col-xs-10 col-lg-10">
+      <div class="searchform col-md-10 col-sm-10 col-xs-10 col-lg-10 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
      	<form name="form_name" id="fname" onsubmit="return locdata();">
             <input type="text" list="sugg" name="search2" id="search1" class="box col-md-6 col-sm-6 col-xs-6 col-lg-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-2 col-lg-offset-4" onkeyup="showResult(this.value,event); road_1();" autocomplete="off">
             <button class="btn btn-primary" onclick="locdata();"><i id="btn" class='fa fa-search'></i></button>
@@ -29,7 +29,7 @@ session_start();
 	  </div>
 	  
 	  
-	  <div id="checkboxes" style="z-index:10000000;left:10px;top:45px;position:fixed;background:white;font-size: 20px;">
+	  <div id="checkboxes" style="z-index:10000000;left:10px;bottom:45px;position:fixed;background:white;font-size:110%;">
 		<ul>
 			<li><input type="checkbox" id="places" onclick="onchangecheckbox(this)">Places To Eat</li>
 			<li><input type="checkbox" id="hostels" onclick="onchangecheckbox1(this)">Hostels</li>
