@@ -30,10 +30,11 @@ session_start();
 	  </div>
 	  
 	  
-
+<<<<<<< HEAD
 	  <div id="checkboxes" class="col-xs-hidden">
-
-
+=======
+	  <div id="checkboxes" style="z-index:10000000;left:10px;bottom:45px;position:fixed;background:white;font-size:110%;">
+>>>>>>> origin/master
 		<ul>
 			<li><input type="checkbox" id="places" onclick="onchangecheckbox(this)"> Places To Eat</li>
 			<li><input type="checkbox" id="hostels" onclick="onchangecheckbox1(this)"> Hostels</li>
